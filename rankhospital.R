@@ -1,9 +1,8 @@
-best <- function(state, outcome) {
+rankhospital <- function(state, outcome, num="best"){
       measureAll<-read.csv("outcome-of-care-measures.csv")
-      ##Read outcome data
-      ##Check that state and outcome are valid      
       ##state<-"OR"
       ##outcome<-"heart attack"
+      ##num<-"best"
       outcomeColumn<-0
       if(sum(complete.cases(match(measureAll[,"State"],state)))==0)
       {
@@ -23,10 +22,15 @@ best <- function(state, outcome) {
       {
             stop("invalid outcome")
       }
-      ## Return hospital name in that state with lowest 30-day death
-      ## rate
+      
       measureState<-subset(measureAll,State==state)
+      if(num=="best"){
+            num=1
+      }else if(num=="worst"){
+            num=sum(complete.cases(as.double(as.character(measureState[,outcomeColumn]))))
+      }      
       measureOrder<-measureState[order(as.double(as.character(measureState[,outcomeColumn])),measureState[,2]),]
-      hospital<-as.character(measureOrder[1,2])
+      hospital<-as.character(measureOrder[num,2])
       hospital
+      
 }

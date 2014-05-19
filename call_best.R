@@ -1,9 +1,8 @@
 source("http://d396qusza40orc.cloudfront.net/rprog%2Fscripts%2Fsubmitscript3.R")
-source(best.R)
 submit()
 yangzhihao4023@gmail.com
 vuyEvdbXaa
-4
+8
 
 
 1
@@ -41,3 +40,9 @@ rankhospital("MD", "heart attack", "worst")
 [1] "HARFORD MEMORIAL HOSPITAL"
 rankhospital("MN", "heart attack", 5000)
 [1] NA
+
+source("rankall.R")
+rankall("pneumonia", "worst")
+
+
+
